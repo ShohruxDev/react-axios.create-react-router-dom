@@ -1,0 +1,13 @@
+footer{
+    padding: 20px 50px;
+   margin: 40PX 50PX;
+    background-color: rgb(118, 108, 113);
+    overflow-x: hidden;
+    border-radius: 8PX;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer p{
+    color: white;
+}

@@ -1,0 +1,18 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+}
+header .navlink{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+header .navlink a{
+    text-decoration: none;
+}
+header .navlink a.active{
+    color: darkcyan;
+    list-style: none;
+}
