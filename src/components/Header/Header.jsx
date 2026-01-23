@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import heart from "../../assets/heart3.png";
 import { useStatevalue } from "../../context/Context";
+import ModallWrapper from "../ModallWrapper/ModallWrapper";
 const Header = () => {
-  const { wishlist } = useStatevalue();
+  const { wishlist, search, setSearch } = useStatevalue();
+  const [isModalOpen, setisModalOpen] = useState(false);
   return (
     <>
       <header>
-        <div>
+        <div className="input">
           <p>AsaxiyClone</p>
+          <input
+            value={search}
+            placeholder="Search..."
+            onChange={(e) => setSearch(e.target.value)}
+            className="inputt"
+            type="text"
+          />
+          <button className="btn" onClick={() => setisModalOpen(true)}>
+            Modal Open
+          </button>
+          {isModalOpen && (
+            <ModallWrapper
+              open={isModalOpen}
+              onClose={() => setisModalOpen((prev) => !prev)}
+            >
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Aliquam, cumque saepe? Soluta!
+              </p>
+              <button onClick={() => setisModalOpen(false)} className="btn btn-header">
+                Close
+              </button>
+            </ModallWrapper>
+          )}
         </div>
         <div className="navlink">
           <NavLink to="/homepage">HomePage</NavLink>

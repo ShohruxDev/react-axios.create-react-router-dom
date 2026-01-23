@@ -3,13 +3,11 @@ import API from "../../API/api";
 import "./HomePage.css";
 import heart from "../../assets/heart2.png";
 import { useNavigate } from "react-router-dom";
-import ModallWrapper from "../../components/ModallWrapper/ModallWrapper";
 import { useStatevalue } from "../../context/Context";
 const HomePage = () => {
-  const {wishlist, setWishlist} = useStatevalue()
+  const {wishlist, setWishlist, search} = useStatevalue()
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState("");
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
@@ -25,7 +23,7 @@ const HomePage = () => {
       .finally(() => setLoading(false));
   }, [count]);
   const filterinput = products.filter((pr) =>
-    pr.title.toLowerCase().includes(filter.toLowerCase()),
+    pr.title.toLowerCase().includes(search.toLowerCase()),
   );
  const handelWishlist = (product) => {
   setWishlist((prev) => {
@@ -42,30 +40,8 @@ const HomePage = () => {
   return (
     <>
       <div className="show-hide">
-        <input
-          placeholder="Search"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          className="inputhome"
-          type="text"
-        />
-        <button className="btn" onClick={() => setisModalOpen(true)}>
-          Modal Open
-        </button>
-        {isModalOpen && (
-          <ModallWrapper
-            open={isModalOpen}
-            onClose={() => setisModalOpen((prev) => !prev)}
-          >
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-              cumque saepe? Soluta!
-            </p>
-            <button onClick={() => setisModalOpen(false)} className="btn">
-              Close
-            </button>
-          </ModallWrapper>
-        )}
+      
+       
         {!show && (
           <button className="btn" onClick={() => setShow(true)}>
             Show

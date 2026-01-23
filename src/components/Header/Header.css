@@ -12,6 +12,23 @@ header .navlink{
 header .navlink a{
     text-decoration: none;
 }
+.input{
+    display:flex;
+    align-items: center;
+    gap: 20px;
+}
+.inputt{
+     padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    border: 1px solid darkcyan;
+}
+.btn-header{
+    background-color: rgb(231, 14, 14);
+}
+.btn-header:hover{
+    background-color: red;
+}
 header .navlink a.active{
     color: darkcyan;
     list-style: none;
