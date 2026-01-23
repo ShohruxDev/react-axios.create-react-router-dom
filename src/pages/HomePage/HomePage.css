@@ -84,3 +84,8 @@
     transform: rotate(360deg);
   }
 } 
+.pr-img-2{
+    width: 17%;
+    margin-left: 150px;
+    margin-top: 10px;
+}

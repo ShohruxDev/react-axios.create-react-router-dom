@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import API from "../../API/api";
 import "./HomePage.css";
+import heart from "../../assets/heart2.png";
 import { useNavigate } from "react-router-dom";
 import ModallWrapper from "../../components/ModallWrapper/ModallWrapper";
+import { useStatevalue } from "../../context/Context";
 const HomePage = () => {
+  const {wishlist, setWishlist} = useStatevalue()
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState("");
@@ -24,6 +27,18 @@ const HomePage = () => {
   const filterinput = products.filter((pr) =>
     pr.title.toLowerCase().includes(filter.toLowerCase()),
   );
+ const handelWishlist = (product) => {
+  setWishlist((prev) => {
+    const isSome = prev.some((p) => p.id === product.id);
+
+    if (isSome) {
+      return prev.filter((item) => item.id !== product.id);
+    } else {
+      return [...prev, product];
+    }
+  });
+};
+
   return (
     <>
       <div className="show-hide">
@@ -34,7 +49,9 @@ const HomePage = () => {
           className="inputhome"
           type="text"
         />
-        <button className="btn" onClick={() => setisModalOpen(true)}>Modal Open</button>
+        <button className="btn" onClick={() => setisModalOpen(true)}>
+          Modal Open
+        </button>
         {isModalOpen && (
           <ModallWrapper
             open={isModalOpen}
@@ -44,7 +61,9 @@ const HomePage = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
               cumque saepe? Soluta!
             </p>
-            <button onClick={() => setisModalOpen(false)} className="btn">Close</button>
+            <button onClick={() => setisModalOpen(false)} className="btn">
+              Close
+            </button>
           </ModallWrapper>
         )}
         {!show && (
@@ -68,6 +87,16 @@ const HomePage = () => {
               key={product.id}
             >
               <div className="tail">
+                <div>
+                  <img
+                    onClick={(e) => {
+                      (e.stopPropagation(), handelWishlist(product));
+                    }}
+                    className="pr-img-2"
+                    src={heart}
+                    alt="heart-image"
+                  />
+                </div>
                 <img className="pr-img" src={product.thumbnail} alt="" />
                 <p>{product.title}</p>
               </div>

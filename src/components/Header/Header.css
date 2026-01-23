@@ -16,3 +16,21 @@ header .navlink a.active{
     color: darkcyan;
     list-style: none;
 }
+.heart{
+    width:28px;
+    height: 28px;
+    position: absolute;
+    z-index: 1;
+    left: 70px;
+}
+.newsflex{
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+.newsp{
+    position: absolute;
+    z-index: 2;
+    left: 80px;
+}
